@@ -1,26 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import backgroundImage from "../assets/Background.webp";
 import Roux from "./Roux";
 import Mulino from "./Mulino";
 import Lombana from "./Lombana";
 import Torrijos from "./Torrijos";
 import DetailModal from "./DetailModal";
-import Character from "./Character";
-
-const characters = [
-    { name: 'Mulino', image: require('../assets/Gorro.png') },
-    { name: 'Torrijos', image: require('../assets/Dino.webp') },
-    { name: 'Roux', image: require('../assets/Presentador.webp') },
-    { name: 'Lombana', image: require('../assets/Payaso.png') },
-];
 
 const Background = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
 
-    const velocidad = 2;
-    const isMobile = window.innerWidth < 768;
-    const getImageWidthMultiplier = () => isMobile ? 2.5 : 1.5;
+    const velocidad = 2; 
+    const isMobile = window.innerWidth < 768; 
+    const getImageWidthMultiplier = () => (isMobile ? 2.5 : 1.5);
     const getCenterVW = () => (getImageWidthMultiplier() * 100) / 2;
 
     const calculateInitialOffset = () => {
@@ -83,28 +75,58 @@ const Background = () => {
     }, []);
 
     return (
-        <div className='overflow-hidden relative h-screen'>
-            {isModalOpen && (
-                <DetailModal character={selectedCharacter} setIsModalOpen={setIsModalOpen} />
-            )}
-            {/* Map sobre el array de personajes */}
-            {characters.map((character, index) => (
-                <div
-                    key={index}
-                    className={`absolute ${character.name === 'Roux' ? 'top-1/2' : 'bottom-20 md:bottom-3'
-                        } ${character.name === 'Roux' ? 'left-1/2' : 'right-1/2'
-                        } w-52 h-52`}
-                    style={{
-                        transform: `translateX(${character.name === 'Roux' ? '-50%' : '50%'
-                            })`,
-                    }}
-                >
-                    <Character {...character} />
-                </div>
-            ))}
+        <div className="overflow-hidden relative h-screen">
+            {isModalOpen && <DetailModal character={selectedCharacter} setIsModalOpen={setIsModalOpen} />}
+            <div className="w-1/6 md:w-[15svw] h-full bg-gradient-to-r via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
+            <div className="w-1/6 md:w-[15svw] h-full right-0 bg-gradient-to-l via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
+            <img
+                src={backgroundImage}
+                alt="Fondo de Circo, Carpa roja y blanca"
+                className="min-h-screen object-cover"
+                style={{
+                    transform: `translateX(${offset}px)`,
+                    minWidth: `${getImageWidthMultiplier() * 100}vw`
+                }}
+            />
+            <div
+                className="absolute 2xl:w-[16vw] 2xl:h-[16vw] z-30 w-56 h-56 aspect-square md:w-44 md:h-44 translate-x-[140vw] md:translate-x-[20vw]"
+                style={{
+                    right: `calc(${-offset}px - 12vw)`,
+                    bottom: "10%",
+                }}
+            >
+                <Mulino />
+            </div>
+            <div
+                className="absolute w-52 h-52 2xl:w-[18vw] 2xl:h-[18vw] translate-x-[100vw] md:translate-x-[-20vw]"
+                style={{
+                    right: `calc(${-offset}px - 30vw)`,
+                    bottom: `${isMobile ? "30%" : "25%"}`,
+                }}
+            >
+                <Torrijos />
+            </div>
+
+            <div
+                className="absolute top-1/2 w-72 md:w-90 2xl:w-[25vw] 2xl:h-[25vw] aspect-square -translate-x-1/2 -translate-y-1/3"
+                style={{
+                    left: `calc(${getCenterVW()}vw + ${offset}px)`,
+                }}
+            >
+                <Roux />
+
+            </div>
+            <div
+                className="absolute w-60 h-60 2xl:w-[20vw] 2xl:h-[20vw] translate-x-[10vw] md:translate-x-[-20vw]"
+                style={{
+                    right: `calc(${-offset}px + 40vw)`,
+                    bottom: "20%",
+                }}
+            >
+                <Lombana />
+            </div>
         </div>
     );
-
 };
 
 export default Background;
