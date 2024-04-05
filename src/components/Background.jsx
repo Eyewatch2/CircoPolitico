@@ -10,8 +10,8 @@ const Background = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
 
-    const velocidad = 2; 
-    const isMobile = window.innerWidth < 768; 
+    const velocidad = 2;
+    const isMobile = window.innerWidth < 768;
     const getImageWidthMultiplier = () => (isMobile ? 2.5 : 1.5);
     const getCenterVW = () => (getImageWidthMultiplier() * 100) / 2;
 
@@ -32,13 +32,12 @@ const Background = () => {
 
         if (directionRef.current && timeSinceLastUpdate > 10) {
             setOffset((currentOffset) => {
-                const imageWidthPx = window.innerWidth * getImageWidthMultiplier(); // Ancho dinámico de la imagen
+                const imageWidthPx = window.innerWidth * getImageWidthMultiplier();
                 const maxOffset = window.innerWidth - imageWidthPx;
                 const nextOffset = directionRef.current === 'left' ? currentOffset + velocidad : currentOffset - velocidad;
 
-                lastUpdateRef.current = now; // Actualizar la referencia de tiempo
+                lastUpdateRef.current = now;
 
-                // Prevenir que el offset exceda los límites
                 return Math.min(Math.max(nextOffset, maxOffset), 0);
             });
         }
@@ -75,17 +74,22 @@ const Background = () => {
     }, []);
 
     return (
-        <div className="overflow-hidden relative h-screen">
-            {isModalOpen && <DetailModal character={selectedCharacter} setIsModalOpen={setIsModalOpen} />}
+        <div className="overflow-hidden relative h-svh">
+            {isModalOpen && (
+                <DetailModal
+                    character={selectedCharacter}
+                    setIsModalOpen={setIsModalOpen}
+                />
+            )}
             <div className="w-1/6 md:w-[15svw] h-full bg-gradient-to-r via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
             <div className="w-1/6 md:w-[15svw] h-full right-0 bg-gradient-to-l via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
             <img
                 src={backgroundImage}
                 alt="Fondo de Circo, Carpa roja y blanca"
-                className="min-h-screen object-cover"
+                className="min-h-svh object-cover"
                 style={{
                     transform: `translateX(${offset}px)`,
-                    minWidth: `${getImageWidthMultiplier() * 100}vw`
+                    minWidth: `${getImageWidthMultiplier() * 100}vw`,
                 }}
             />
             <div
@@ -95,7 +99,10 @@ const Background = () => {
                     bottom: "10%",
                 }}
             >
-                <Mulino />
+                <Mulino
+                    setIsModalOpen={setIsModalOpen}
+                    setSelectedCharacter={setSelectedCharacter}
+                />
             </div>
             <div
                 className="absolute w-52 h-52 2xl:w-[18vw] 2xl:h-[18vw] translate-x-[100vw] md:translate-x-[-20vw]"
@@ -104,7 +111,8 @@ const Background = () => {
                     bottom: `${isMobile ? "30%" : "25%"}`,
                 }}
             >
-                <Torrijos />
+                <Torrijos setIsModalOpen={setIsModalOpen}
+                    setSelectedCharacter={setSelectedCharacter} />
             </div>
 
             <div
@@ -113,17 +121,18 @@ const Background = () => {
                     left: `calc(${getCenterVW()}vw + ${offset}px)`,
                 }}
             >
-                <Roux />
-
+                <Roux setIsModalOpen={setIsModalOpen}
+                    setSelectedCharacter={setSelectedCharacter} />
             </div>
             <div
-                className="absolute w-60 h-60 2xl:w-[20vw] 2xl:h-[20vw] translate-x-[10vw] md:translate-x-[-20vw]"
+                className="absolute w-96 h-96 2xl:w-[20vw] 2xl:h-[20vw] translate-x-[25vw] md:translate-x-[-20vw]"
                 style={{
                     right: `calc(${-offset}px + 40vw)`,
-                    bottom: "20%",
+                    bottom: "10%",
                 }}
             >
-                <Lombana />
+                <Lombana setIsModalOpen={setIsModalOpen}
+                    setSelectedCharacter={setSelectedCharacter} />
             </div>
         </div>
     );
