@@ -3,10 +3,8 @@ import Background from "./components/Background";
 const App = () => {
 
   return (
-    <div>
-      <Background />
-    
-    </div>
+    <Background />
+
   );
 };
 

@@ -1,14 +1,18 @@
 import { useState, useEffect, useRef } from "react";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+
 import backgroundImage from "../assets/Background.webp";
 import Roux from "./Roux";
 import Mulino from "./Mulino";
 import Lombana from "./Lombana";
 import Torrijos from "./Torrijos";
 import DetailModal from "./DetailModal";
+import Instructions from "./Instructions";
 
 const Background = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
+    const [instructions, setInstructions] = useState(true);
 
     const velocidad = 2;
     const isMobile = window.innerWidth < 768;
@@ -75,14 +79,23 @@ const Background = () => {
 
     return (
         <div className="overflow-hidden relative h-svh">
+            {instructions && (
+                <Instructions
+                    close={() => setInstructions(false)}
+                />
+            )}
             {isModalOpen && (
                 <DetailModal
                     character={selectedCharacter}
                     setIsModalOpen={setIsModalOpen}
                 />
             )}
-            <div className="w-1/6 md:w-[15svw] h-full bg-gradient-to-r via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
-            <div className="w-1/6 md:w-[15svw] h-full right-0 bg-gradient-to-l via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex"></div>
+            <div className="w-1/6 md:w-[15svw] h-full bg-gradient-to-r via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex flex-col justify-center">
+                <FaAngleLeft className="text-white text-4xl ml-2" />
+            </div>
+            <div className="w-1/6 md:w-[15svw] h-full right-0 bg-gradient-to-l via-20% md:via-30% via-black/60 from-black to-transparent absolute z-40 flex flex-col justify-center items-end">
+                <FaAngleRight className="text-white text-4xl mr-2" />
+            </div>
             <img
                 src={backgroundImage}
                 alt="Fondo de Circo, Carpa roja y blanca"
