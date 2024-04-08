@@ -1,4 +1,5 @@
 import LombanaImg from '../assets/Payaso.png'
+import LombanaGif from "../assets/Payaso.gif"
 
 const Lombana = ({ setSelectedCharacter, setIsModalOpen }) => {
 
@@ -8,6 +9,7 @@ const Lombana = ({ setSelectedCharacter, setIsModalOpen }) => {
             description:
                 "¡Qué risa! ¡Encontraste a Lombana! Es el payaso de la política. Siempre está haciendo chistes y payasadas. ¡Hacer reir a la gente es lo único en lo que es bueno! Pero no te dejes engañar, porque... ¡Tiene doble cara! Cambia su discurso según le convenga.",
             img: LombanaImg,
+            gif: LombanaGif
         });
         setIsModalOpen(true)
     }

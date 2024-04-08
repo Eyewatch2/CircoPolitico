@@ -1,4 +1,5 @@
 import MulinoImg from '../assets/Gorro.png'
+import MulinoGif from "../assets/Gorro.gif"
 
 const Mulino = ({ setSelectedCharacter, setIsModalOpen }) => {
     const handleClick = () => {
@@ -7,6 +8,7 @@ const Mulino = ({ setSelectedCharacter, setIsModalOpen }) => {
             description:
                 "¡Increíble! Encontraste a Mulino. Un personaje muy escurridizo. En los momentos importantes... ¡desaparece como por arte de magia! Se comenta que hypnotiza a la población con palabras vacías. De hecho, ¡nadie sabe cuáles son sus propuestas!",
             img: MulinoImg,
+            gif: MulinoGif
         });
         setIsModalOpen(true)
     }

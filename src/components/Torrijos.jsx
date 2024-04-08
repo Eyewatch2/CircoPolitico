@@ -5,7 +5,7 @@ const Torrijos = ({ setSelectedCharacter, setIsModalOpen }) => {
     setSelectedCharacter({
         name: "Martín Torrijos",
         description:
-            "Mira nada más, ¡Haz encontrado un T-Rrijos! Creíamos que este espécimen estaba extinto. Se dice que es un dinosaurio de la política. ¡Cuidado! Puede que te coma con sus propuestas prehistóricas. Y no llegues a confiarle tu dinero... ¡De su padre aprendió a devorárselo y nunca más lo volverías a ver!.",
+            "Mira nada más, ¡Haz encontrado un T-Rrijos! Creíamos que este espécimen estaba extinto. Se dice que es un dinosaurio de la política. ¡Cuidado! Puede que te coma con sus propuestas prehistóricas. Y no llegues a confiarle tu dinero... ¡De su padre aprendió a devorárselo y nunca más lo volverías a ver!",
         img: TorrijosImg,
     });
     setIsModalOpen(true)
