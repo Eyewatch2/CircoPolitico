@@ -1,0 +1,13 @@
+.animation-error {
+    animation: shake 0.5s ease-in-out 3 alternate; /* Nombre de la animación, duración, función de tiempo, número de veces que se repite y dirección */
+  }
+  
+  @keyframes shake {
+    0%, 50%, 100% {
+      transform: translateX(-5px); /* Mueve el elemento 5px a la izquierda */
+    }
+    25%, 75% {
+      transform: translateX(5px); /* Mueve el elemento 5px a la derecha */
+    }
+  }
+  

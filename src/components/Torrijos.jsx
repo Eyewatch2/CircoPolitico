@@ -1,4 +1,5 @@
 import TorrijosImg from '../assets/Dino.png'
+import TorrijosGif from "../assets/Dino.gif"
 
 const Torrijos = ({ setSelectedCharacter, setIsModalOpen }) => {
   const handleClick = () => {
@@ -7,6 +8,7 @@ const Torrijos = ({ setSelectedCharacter, setIsModalOpen }) => {
         description:
             "Mira nada más, ¡Haz encontrado un T-Rrijos! Creíamos que este espécimen estaba extinto. Se dice que es un dinosaurio de la política. ¡Cuidado! Puede que te coma con sus propuestas prehistóricas. Y no llegues a confiarle tu dinero... ¡De su padre aprendió a devorárselo y nunca más lo volverías a ver!",
         img: TorrijosImg,
+        gif: TorrijosGif
     });
     setIsModalOpen(true)
 }

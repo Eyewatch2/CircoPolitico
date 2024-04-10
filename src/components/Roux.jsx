@@ -1,5 +1,6 @@
 import React from 'react';
 import RouxImg from '../assets/Presentador.webp';
+import RouxGif from '../assets/Presentador.gif'
 
 const Roux = ({ setSelectedCharacter, setIsModalOpen }) => {
     const handleClick = () => {
@@ -8,6 +9,7 @@ const Roux = ({ setSelectedCharacter, setIsModalOpen }) => {
             description:
                 "¡Oh vaya! Te has topado con Roux. Es el presentador de este circo. Sus orejas son tan grandes que escucha todo lo que dices. Parece muy simpático y amigable, pero... ¡Cuidado! ",
             img: RouxImg,
+            gif: RouxGif
         });
         setIsModalOpen(true)
     }
